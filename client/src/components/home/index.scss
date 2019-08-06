@@ -1,0 +1,41 @@
+.swiper-card {
+
+}
+.swiper-image {
+  width: 100%;
+}
+.list {
+  margin-top: 20px;
+  background: #fff;
+  padding-bottom: 50Px;
+  .article {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 93vw;
+    margin: 0 auto;
+    padding: 3.2vw 0;
+    border-bottom: 1px solid #ddd;
+    .cover {
+      width: 27vw;
+      height: 20vw;
+      margin-right: 5vw;
+      border-radius: 4Px;
+    }
+    .content {
+      width: 70vw;
+      height: 20vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      .title {
+        color: #3e3e3e;
+        font-size: 16Px;
+      }
+      .number {
+        color: #8f8f8f;
+        font-size: 12Px;
+      }
+    }
+  }
+}

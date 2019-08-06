@@ -20,17 +20,23 @@ class App extends Component {
    */
   config: Config = {
     pages: [
-      'pages/index/index'
+      'pages/index/index',
+      'pages/article/index'
     ],
     window: {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#fff',
       navigationBarTitleText: 'WeChat',
       navigationBarTextStyle: 'black'
-    }
+    },
+    cloud: true
   }
 
-  componentDidMount () {}
+  componentDidMount () {
+    if (process.env.TARO_ENV === 'weapp') {
+      Taro.cloud.init()
+    }
+  }
 
   componentDidShow () {}
 
