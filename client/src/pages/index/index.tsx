@@ -66,7 +66,6 @@ export default class Index extends Component<any, IState> {
     let _this = this
     if (site) {
       Taro.setNavigationBarTitle({title: site.title})
-      this.config.navigationBarTitleText = site.title
       _this.setState({
         site
       })

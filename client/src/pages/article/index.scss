@@ -1,0 +1,34 @@
+@import '../../components/wxParse/wxParse.wxss';
+
+.article {
+  width: 100vw;
+  height: 100vh;
+  .article-cover {
+    position: fixed;
+    width: 100vw;
+    top: 0;
+    z-index: -1;
+    .article-cover-image {
+      width: 100vw;
+    }
+  }
+  .article-scroll {
+    color: #333;
+    width: 100vw;
+    height: 100vh;
+    .article-title {
+      font-size: 20Px;
+      text-align: left;
+      margin-bottom: 30px;
+    }
+    .content {
+      margin-top: 60vw;
+      width: 100vw;
+      background-color: #fff;
+      border-top-left-radius: 20rpx;
+      border-top-right-radius: 20rpx;
+      padding: 20PX;
+      box-sizing: border-box;
+    }
+  }
+}

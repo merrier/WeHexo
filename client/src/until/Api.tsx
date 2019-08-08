@@ -1,6 +1,6 @@
 import Taro from '@tarojs/taro'
 
-// type: 1、wx.request  2、callFunction 云函数
+// requestType: 1、wx.request  2、callFunction 云函数
 const requestType = 1;
 const api = {
   host: 'https://merrier.wang',

@@ -2,3 +2,9 @@
 */node_modules/*
 package-lock.json
 */dist/*
+client/.editorconfig
+client/.eslintrc
+client/global.d.ts
+client/tsconfig.json
+cloud/functions/login/
+client/src/icon/

@@ -1,2 +1,36 @@
 @import "~taro-ui/dist/style/index.scss";
-@import './wxParse/wxParse.wxss';
+//@font-face {
+//  font-family: 'FontAwesome';
+//  /* 自行安装第三方字体图标库 */
+//  src: url('icon/fonts/fontawesome-webfont.eot?v=4.7.0');
+//  src: url('icon/fonts/fontawesome-webfont.woff2?v=4.7.0') format('woff2'), url('icon/fonts/fontawesome-webfont.woff?v=4.7.0') format('woff'), url('icon/fonts/fontawesome-webfont.ttf?v=4.7.0') format('truetype');
+//  font-weight: normal;
+//  font-style: normal;
+//}
+///* 根据第三方字体图标库编写 */
+///* 举例：fa 就是 prefixClass 的值，下面的的图标 css class 命名都要用 fa- 开头  */
+//.fa {
+//  display: inline-block;
+//  /* 以下的 font 与上面 @font-face 的 font-family 要一致*/
+//  font: normal normal normal 14px/1 FontAwesome;
+//  font-size: inherit;
+//  text-rendering: auto;
+//  -webkit-font-smoothing: antialiased;
+//  -moz-osx-font-smoothing: grayscale;
+//}
+//.fa-clock:before {
+//  content: "\f00c";
+//}
+//@import 'icon/scss/font-awesome';
+.header-navbar-icon {
+  font-size: 22PX !important;
+}
+
+.loading-rotate {
+  animation: rotate 1.5s linear infinite;
+  width: 60px;
+  height: 60px;
+}
+@keyframes rotate{from{transform: rotate(0deg)}
+  to{transform: rotate(359deg)}
+}

@@ -7,7 +7,7 @@ interface IState {
 
 }
 
-export default class Index extends Component<any, IState> {
+export default class Mine extends Component<any, IState> {
 
   constructor () {
     super()

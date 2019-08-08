@@ -26,8 +26,9 @@ class App extends Component {
     window: {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#fff',
-      navigationBarTitleText: 'WeChat',
-      navigationBarTextStyle: 'black'
+      navigationBarTitleText: 'Blog',
+      navigationBarTextStyle: 'white',
+      navigationStyle: 'custom'
     },
     cloud: true
   }
@@ -35,6 +36,8 @@ class App extends Component {
   componentDidMount () {
     if (process.env.TARO_ENV === 'weapp') {
       Taro.cloud.init()
+      Taro.setStorageSync('systemInfo', Taro.getSystemInfoSync())
+      Taro.setStorageSync('menuButton', Taro.getMenuButtonBoundingClientRect())
     }
   }
 

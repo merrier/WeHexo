@@ -1,13 +1,20 @@
-.swiper-card {
+.home {
+  padding-bottom: 50Px;
+  box-sizing: border-box;
+  height: 100vh;
+}
+.swiper-container {
+  height: 60vw;
+  .swiper-card {
+    .swiper-image {
+      width: 100%;
+    }
+  }
+}
 
-}
-.swiper-image {
-  width: 100%;
-}
 .list {
   margin-top: 20px;
-  background: #fff;
-  padding-bottom: 50Px;
+  background-color: #fff;
   .article {
     display: flex;
     flex-direction: row;

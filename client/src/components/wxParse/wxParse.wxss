@@ -1,3 +1,4 @@
+/*postcss-pxtransform disable*/
 
 /**
  * author: Di (微信小程序开发工程师)
@@ -11,14 +12,14 @@
  */
 
 .wxParse{
-    margin: 0 5Px;
+    margin: 0 5px;
     font-family: Helvetica,sans-serif;
-    font-size: 28Px;
+    font-size: 28rpx;
     color: #666;
     line-height: 1.8;
 }
 view{
-    word-break:break-all; overflow:auto;
+    word-break:break-all; overflow-x:auto;
 }
 .wxParse-inline{
     display: inline;
@@ -35,33 +36,33 @@ view{
 .wxParse-h6{ font-size:.75em; margin: 1.67em 0 }
 
 .wxParse-h1 {
-  font-size: 18Px;
+  font-size: 18px;
   font-weight: 400;
   margin-bottom: .9em;
 }
 .wxParse-h2 {
-  font-size: 16Px;
+  font-size: 16px;
   font-weight: 400;
   margin-bottom: .34em;
 }
 .wxParse-h3 {
   font-weight: 400;
-  font-size: 15Px;
+  font-size: 15px;
   margin-bottom: .34em;
 }
 .wxParse-h4 {
   font-weight: 400;
-  font-size: 14Px;
+  font-size: 14px;
   margin-bottom: .24em;
 }
 .wxParse-h5 {
   font-weight: 400;
-  font-size: 13Px;
+  font-size: 13px;
   margin-bottom: .14em;
 }
 .wxParse-h6 {
   font-weight: 400;
-  font-size: 12Px;
+  font-size: 12px;
   margin-bottom: .04em;
 }
 
@@ -86,7 +87,7 @@ view{
 
 .wxParse-video{
     text-align: center;
-    margin: 10Px 0;
+    margin: 10px 0;
 }
 
 .wxParse-video-video{
@@ -100,10 +101,10 @@ view{
 
 .wxParse-blockquote {
     margin: 0;
-    padding:10Px 0 10Px 5Px;
+    padding:10px 0 10px 5px;
     font-family:Courier, Calibri,"宋体";
     background:#f5f5f5;
-    border-left: 3Px solid #dbdbdb;
+    border-left: 3px solid #dbdbdb;
 }
 
 .wxParse-code,.wxParse-wxxxcode-style{
@@ -111,48 +112,48 @@ view{
     background:#f5f5f5;
 }
 .wxParse-ul{
-    margin: 20Px 10Px;
+    margin: 20rpx 10rpx;
 }
 
 .wxParse-li,.wxParse-li-inner{
     display: flex;
     align-items: baseline;
-    margin: 10Px 0;
+    margin: 10rpx 0;
 }
 .wxParse-li-text{
 
     align-items: center;
-    line-height: 20Px;
+    line-height: 20px;
 }
 
 .wxParse-li-circle{
     display: inline-flex;
-    width: 5Px;
-    height: 5Px;
+    width: 5px;
+    height: 5px;
     background-color: #333;
-    margin-right: 5Px;
+    margin-right: 5px;
 }
 
 .wxParse-li-square{
     display: inline-flex;
-    width: 10Px;
-    height: 10Px;
+    width: 10rpx;
+    height: 10rpx;
     background-color: #333;
-    margin-right: 5Px;
+    margin-right: 5px;
 }
 .wxParse-li-ring{
     display: inline-flex;
-    width: 10Px;
-    height: 10Px;
-    border: 2Px solid #333;
+    width: 10rpx;
+    height: 10rpx;
+    border: 2rpx solid #333;
     border-radius: 50%;
     background-color: #fff;
-    margin-right: 5Px;
+    margin-right: 5px;
 }
 
 /*.wxParse-table{
     width: 100%;
-    height: 400Px;
+    height: 400px;
 }
 .wxParse-thead,.wxParse-tfoot,.wxParse-tr{
     display: flex;
@@ -160,7 +161,7 @@ view{
 }
 .wxParse-th,.wxParse-td{
     display: flex;
-    width: 580Px;
+    width: 580px;
     overflow: auto;
 }*/
 
@@ -174,29 +175,29 @@ view{
     align-items: center;
 }
 .wxEmoji{
-    width: 16Px;
-    height:16Px;
+    width: 16px;
+    height:16px;
 }
 .wxParse-tr{
 	display: flex;
-	border-right:1Px solid #e0e0e0;
-	border-bottom:1Px solid #e0e0e0;
-	border-top:1Px solid #e0e0e0;
+	border-right:1px solid #e0e0e0;
+	border-bottom:1px solid #e0e0e0;
+	border-top:1px solid #e0e0e0;
 }
 .wxParse-th,
 .wxParse-td{
 	flex:1;
-	padding:5Px;
-	font-size:28Px;
-	border-left:1Px solid #e0e0e0;
+	padding:5px;
+	font-size:28rpx;
+	border-left:1px solid #e0e0e0;
 	word-break: break-all;
 }
 .wxParse-td:last{
-	border-top:1Px solid #e0e0e0;
+	border-top:1px solid #e0e0e0;
 }
 .wxParse-th{
 	background:#f0f0f0;
-	border-top:1Px solid #e0e0e0;
+	border-top:1px solid #e0e0e0;
 }
 .wxParse-del{
     display: inline;

@@ -28,6 +28,7 @@ const config = {
   },
   copy: {
     patterns: [
+      { from: 'src/images', to: 'dist/images'}
     ],
     options: {
     }

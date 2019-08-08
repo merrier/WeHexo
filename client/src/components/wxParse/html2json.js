@@ -11,7 +11,7 @@
  * for: 微信小程序富文本解析
  * detail : http://weappdev.com/t/wxparse-alpha0-1-html-markdown/184
  */
-import {api} from "../until/Api";
+import {api} from "../../until/Api";
 
 var __placeImgeUrlHttps = "https";
 var __emojisReg = '';
@@ -155,7 +155,6 @@ function html2json(html, bindName) {
                 else if(imgUrl[0] == '/') {
                   imgUrl = api.host + imgUrl
                 }
-                // console.info('-------------',imgUrl)
                 imgUrl = wxDiscode.urlToHttpUrl(imgUrl, __placeImgeUrlHttps);
                 node.attr.src = imgUrl;
                 node.from = bindName;

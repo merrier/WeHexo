@@ -1,8 +1,9 @@
 import Taro, { Component} from '@tarojs/taro'
-import { View, Text, Image, Swiper, SwiperItem } from '@tarojs/components'
-import { AtSearchBar } from 'taro-ui'
+import { View, ScrollView, Text, Image, Swiper, SwiperItem } from '@tarojs/components'
+import { AtSearchBar, AtLoadMore } from 'taro-ui'
 import "./index.scss"
 import { api, request } from "../../until/Api";
+import Loading from '../../components/loading/index'
 
 interface IPost {
   path: string,
@@ -11,7 +12,7 @@ interface IPost {
   keywords: string,
   cover: string,
   categories: object[],
-  tags: object[]
+  tags: object[],
 }
 
 interface IState {
@@ -19,9 +20,11 @@ interface IState {
   currentPage: number,
   pageCount: number,
   posts: IPost[],
+  loading: boolean,
+  status: 'more'|'loading'|'noMore'
 }
 
-export default class Index extends Component<any, IState> {
+export default class Home extends Component<any, IState> {
 
   constructor () {
     super()
@@ -29,19 +32,20 @@ export default class Index extends Component<any, IState> {
       value: '',
       currentPage: 0,
       pageCount: 1,
-      posts: []
+      posts: [],
+      loading: true,
+      status: "loading"
     }
   }
-  componentDidMount () {
+  componentWillMount () {
     this.getPosts()
   }
   render () {
-    let {value, posts} = this.state;
-    console.info(posts)
+    let {value, posts, loading} = this.state;
     return (
-      <View>
+      <ScrollView className="home" scrollY onScrollToLower={this.loadMorePosts}>
         <Swiper
-          className=''
+          className='swiper-container'
           indicatorColor='#999'
           indicatorActiveColor='#333'
           circular
@@ -49,17 +53,17 @@ export default class Index extends Component<any, IState> {
           autoplay>
           <SwiperItem>
             <View className='swiper-card'>
-              <Image mode="aspectFill" src={require("./cover.jpg")} className="swiper-image"/>
+              <Image mode="aspectFill" src={require("../../images/cover.jpg")} className="swiper-image"/>
             </View>
           </SwiperItem>
           <SwiperItem>
             <View className='swiper-card'>
-              <Image mode="aspectFill" src={require("./cover.jpg")} className="swiper-image"/>
+              <Image mode="aspectFill" src={require("../../images/cover.jpg")} className="swiper-image"/>
             </View>
           </SwiperItem>
           <SwiperItem>
             <View className='swiper-card'>
-              <Image mode="aspectFill" src={require("./cover.jpg")} className="swiper-image"/>
+              <Image mode="aspectFill" src={require("../../images/cover.jpg")} className="swiper-image"/>
             </View>
           </SwiperItem>
         </Swiper>
@@ -69,21 +73,30 @@ export default class Index extends Component<any, IState> {
           placeholder="搜索你感兴趣的内容..."
         />
         <View className="list">
-          {
-            posts.map(item => (
-              <View className="article" key={item.title} onClick={() => this.viewDetail(item.path)}>
-                <Image className="cover" src={item.cover} mode="aspectFill" lazyLoad={true}></Image>
-                <View className="content">
-                  <View className="title">{item.title}</View>
-                  <View className="number">
-                    <Text>{item.date}</Text>
-                  </View>
-                </View>
+          {loading ? (<Loading height='60vh'></Loading>) : (
+            <View>
+              <View>
+                {
+                  posts.map(item => (
+                    <View className="article" key={item.title} onClick={()=>this.viewDetail(item.path)}>
+                      <Image className="cover" src={item.cover} mode="aspectFill" lazyLoad={true}></Image>
+                      <View className="content">
+                        <View className="title">{item.title}</View>
+                        <View className="number">
+                          <Text>{item.date}</Text>
+                        </View>
+                      </View>
+                    </View>
+                  ))
+                }
               </View>
-            ))
-          }
+              <AtLoadMore
+                status={this.state.status}
+              />
+            </View>
+          )}
         </View>
-      </View>
+      </ScrollView>
     )
   }
 
@@ -102,6 +115,7 @@ export default class Index extends Component<any, IState> {
   getPosts = () => {
     let _this = this
     let {currentPage, pageCount} = this.state
+    let oldPosts = this.state.posts
     if (currentPage < pageCount) {
       request({
         name: 'posts',
@@ -117,15 +131,29 @@ export default class Index extends Component<any, IState> {
                 posts[i].cover = api.host + posts[i].cover
               }
             } else {
-              posts[i].cover = require("./cover.jpg")
+              posts[i].cover = require("../../images/cover.jpg")
             }
           }
           _this.setState({
-            posts,
+            posts: [...oldPosts, ...posts],
             pageCount: data.pageCount,
             currentPage: currentPage + 1,
+            loading: false
           })
         }
+      })
+    }
+  }
+  loadMorePosts = () => {
+    let {currentPage, pageCount} = this.state
+    if (currentPage < pageCount) {
+      this.setState({
+        status: 'loading'
+      })
+      this.getPosts()
+    } else {
+      this.setState({
+        status: 'noMore'
       })
     }
   }

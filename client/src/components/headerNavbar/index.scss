@@ -1,0 +1,19 @@
+.header-navbar {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.15);
+  display: flex;
+  color: #fff;
+  align-items: center;
+  z-index: 9999;
+  .header-navbar-button {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .line {
+    width: 1PX;
+    height: 18PX;
+    background-color: #e0e0e0;
+  }
+}
