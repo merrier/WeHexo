@@ -48,6 +48,7 @@ function wxParse(bindName = 'wxParseData', type='html', data='<div class="color:
   that.setData({[bindName]: transData})
   that.wxParseImgLoad = wxParseImgLoad;
   that.wxParseImgTap = wxParseImgTap;
+  that.wxParseTagATap = wxParseTagATap;
 }
 // 图片点击事件
 function wxParseImgTap(e) {
@@ -58,6 +59,23 @@ function wxParseImgTap(e) {
     wx.previewImage({
       current: nowImgUrl, // 当前显示图片的http链接
       urls: that.data[tagFrom].imageUrls // 需要预览的图片http链接列表
+    })
+  }
+}
+
+// 点击链接复制链接地址
+function wxParseTagATap(e) {
+  let nowUrl = e.currentTarget.dataset.src;
+  if (typeof (nowUrl) !== 'undefined' && nowUrl.length > 0) {
+    wx.setClipboardData({
+      data: nowUrl,
+      success: () => {
+        wx.showToast({
+          title: '链接复制成功',
+          icon: 'success',
+          duration: 2000
+        })
+      }
     })
   }
 }
