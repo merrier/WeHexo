@@ -4,11 +4,19 @@ import { AtTabBar } from 'taro-ui'
 import Home from "../../components/home/index"
 import Mine from "../../components/mine/index"
 import './index.scss'
-import {request} from "../../until/Api";
+import { request } from "../../until/Api";
+
+type TTagAndCategory = {
+  name: string,
+  path: string,
+  count: number
+}
 
 interface IState {
   current: number,
-  site: object
+  site: object,
+  tags: TTagAndCategory[],
+  categories: TTagAndCategory[]
 }
 
 
@@ -22,12 +30,16 @@ export default class Index extends Component<any, IState> {
     super()
     this.state = {
       current: 0,
-      site: {}
+      site: {},
+      tags: [],
+      categories: []
     }
   }
 
   componentWillMount () {
     this.getSite()
+    this.getTags()
+    this.getCategories()
   }
 
   componentDidMount () {
@@ -77,6 +89,48 @@ export default class Index extends Component<any, IState> {
           Taro.setNavigationBarTitle({title: site.title})
           _this.setState({
             site: data
+          })
+        },
+        error: (e) => console.info(e)
+      })
+    }
+  }
+
+  getTags = () => {
+    let tags = Taro.getStorageSync('tags')
+    let _this = this
+    if (tags) {
+      _this.setState({
+        tags
+      })
+    } else {
+      request({
+        name: 'tags',
+        success: (data) => {
+          Taro.setStorageSync('tags', data)
+          _this.setState({
+            tags: data
+          })
+        },
+        error: (e) => console.info(e)
+      })
+    }
+  }
+
+  getCategories = () => {
+    let categories = Taro.getStorageSync('categories')
+    let _this = this
+    if (categories) {
+      _this.setState({
+        categories
+      })
+    } else {
+      request({
+        name: 'categories',
+        success: (data) => {
+          Taro.setStorageSync('categories', data)
+          _this.setState({
+            tags: data
           })
         },
         error: (e) => console.info(e)

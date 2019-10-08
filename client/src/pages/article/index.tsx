@@ -1,16 +1,25 @@
 import Taro, { Component, Config } from '@tarojs/taro'
-import { View, ScrollView, Image } from '@tarojs/components'
+import { View, ScrollView, Text, Image } from '@tarojs/components'
+import { AtIcon } from 'taro-ui'
+import HeaderNavbar from '../../components/headerNavbar/index'
+import Loading from '../../components/loading/index'
 import { wxParse } from '../../components/wxParse/wxParse'
-import { HeaderNavbar } from '../../components/headerNavbar/index'
-import { Loading } from '../../components/loading/index'
 import {api, request} from "../../until/Api";
 import './index.scss'
+
+type TTagAndCategory = {
+  name: string,
+  path: string,
+  count: number
+}
 
 interface IState {
   isloading: boolean,
   title: string,
   date: string,
   cover: string,
+  tags: TTagAndCategory[],
+  categories: TTagAndCategory[],
   contentStyle: object,
   loading: boolean,
 }
@@ -27,6 +36,8 @@ export default class Index extends Component<any, IState> {
       title: '',
       date: '',
       cover: '',
+      tags: [],
+      categories: [],
       contentStyle: {},
       loading: true,
     }
@@ -39,7 +50,7 @@ export default class Index extends Component<any, IState> {
       name: 'article',
       data: {path: `/${path}`},
       success: (data) => {
-        wxParse('article', 'html', data.content, _this.$scope, 5);
+        wxParse('article', 'html', data.content, _this.$scope, 20);
         Taro.setNavigationBarTitle({title: data.title})
         let cover
         if (data.covers && data.covers.length > 0) {
@@ -56,7 +67,9 @@ export default class Index extends Component<any, IState> {
         }
         _this.setState({
           title: data.title,
-          date: data.date,
+          date: data.date.split("T")[0],
+          tags: data.tags,
+          categories: data.categories,
           cover,
         })
       }
@@ -68,11 +81,11 @@ export default class Index extends Component<any, IState> {
       this.setState({
         loading: false
       })
-    }, 20000)
+    }, 5000)
   }
 
   render () {
-    let {title, cover, contentStyle, loading} = this.state
+    let {title, cover, date, tags, categories, contentStyle, loading} = this.state
     return (
       <View className="article">
         <HeaderNavbar hasBack={true} hasHome={true} hasTitle={true}/>
@@ -83,6 +96,25 @@ export default class Index extends Component<any, IState> {
           <ScrollView className='article-scroll' scrollY={true}>
             <View className="content" style={contentStyle}>
               <View className='article-title'>{title}</View>
+              <View className="article-subtitle">
+                <View className="article-subtitle-item">{date}</View>
+                <View className="article-subtitle-item">
+                  <AtIcon value='folder' size='14' color="#888"></AtIcon>
+                  {
+                    categories.map(item => (
+                      <Text className="item" key={item.path}>{item.name}</Text>
+                    ))
+                  }
+                </View>
+                <View className="article-subtitle-item">
+                  <AtIcon value='tag' size='14' color="#888"></AtIcon>
+                  {
+                    tags.map(item => (
+                      <Text className="item" key={item.path}>{item.name}</Text>
+                    ))
+                  }
+                </View>
+              </View>
               <import src="../../components/wxParse/wxParse.wxml"/>
               <template is="wxParse" data="{{wxParseData: article.nodes}}"/>
             </View>
@@ -93,8 +125,7 @@ export default class Index extends Component<any, IState> {
   }
 
   onCoverLoad = (e) => {
-    console.info(this.state.cover)
-    console.info(e.detail)
+    // console.info(e.detail)
     let { width, height } = e.detail;
     let systemInfo = Taro.getStorageSync("systemInfo")
     let {windowWidth} = systemInfo

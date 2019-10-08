@@ -71,6 +71,7 @@ export default class Home extends Component<any, IState> {
           value={value}
           onChange={this.onChange}
           placeholder="搜索你感兴趣的内容..."
+          onActionClick={this.searchContent}
         />
         <View className="list">
           {loading ? (<Loading height='60vh'></Loading>) : (
@@ -121,7 +122,6 @@ export default class Home extends Component<any, IState> {
         name: 'posts',
         data: { path: `${api.path.posts}/${currentPage+1}.json` },
         success: (data) => {
-          console.info(data)
           let posts = data.data
           for (let i = 0, len = posts.length; i < len; i++) {
             if (posts[i].cover) {
@@ -133,6 +133,7 @@ export default class Home extends Component<any, IState> {
             } else {
               posts[i].cover = require("../../images/cover.jpg")
             }
+            posts[i].date = posts[i].date.split("T")[0]
           }
           _this.setState({
             posts: [...oldPosts, ...posts],
@@ -156,5 +157,17 @@ export default class Home extends Component<any, IState> {
         status: 'noMore'
       })
     }
+  }
+
+  searchContent = () => {
+    let {value} = this.state;
+    request({
+      name: "search",
+      data: {searchKey: value},
+      type: 2,
+      success: data => {
+        console.info(data)
+      }
+    })
   }
 }

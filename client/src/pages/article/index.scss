@@ -19,7 +19,21 @@
     .article-title {
       font-size: 20Px;
       text-align: left;
-      margin-bottom: 30px;
+      margin-bottom: 10Px;
+    }
+    .article-subtitle {
+      display: flex;
+      font-size: 14Px;
+      color: #888;
+      justify-content: flex-start;
+      align-items: center;
+      margin-bottom: 24Px;
+      .article-subtitle-item {
+        margin-right: 16Px;
+        .item {
+          margin-left: 4Px;
+        }
+      }
     }
     .content {
       margin-top: 60vw;
@@ -31,4 +45,21 @@
       box-sizing: border-box;
     }
   }
+}
+
+.highlight, pre {
+  overflow: auto;
+  margin: 20px 0;
+  padding: 0;
+  color: #c5c8c6;
+  font-size: 13px;
+  background: #1d1f21;
+  line-height: 1.6;
+}
+
+.wxParse-figure {
+  position: relative;
+  clear: both;
+  outline: 0;
+  margin: 10px 0;
 }

@@ -70,10 +70,14 @@ function wxParseTagATap(e) {
     wx.setClipboardData({
       data: nowUrl,
       success: () => {
-        wx.showToast({
-          title: '链接复制成功',
-          icon: 'success',
-          duration: 2000
+        wx.hideToast({
+          complete: ()=> {
+            wx.showToast({
+              title: '链接复制成功',
+              icon: 'success',
+              duration: 2000
+            })
+          }
         })
       }
     })

@@ -56,10 +56,8 @@ export default class HeaderNavbar extends Component<IProps, IState> {
     }
   }
   componentWillMount() {
-
     let { menuButton, systemInfo } = this.state;
     let {hasBack, hasHome} = this.props
-    console.info(hasBack&&hasHome ? menuButton.width : menuButton.width/2 )
     let headerNavbarStyle = {
       with: `${ hasBack&&hasHome ? menuButton.width : menuButton.width/2 }px`,
       height: `${menuButton.height}px`,
@@ -79,7 +77,7 @@ export default class HeaderNavbar extends Component<IProps, IState> {
   componentDidMount () {
   }
   render () {
-    console.info(this.state)
+    // console.info(this.state)
     let { headerNavbarStyle, headerNavbarButtonStyle } = this.state;
     let { hasBack, hasHome } = this.props;
     return (

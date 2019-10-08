@@ -152,10 +152,10 @@ function html2json(html, bindName) {
                 if (imgUrl[0] == '') {
                     imgUrl.splice(0, 1);
                 }
-                else if(imgUrl[0] == '/') {
+                imgUrl = wxDiscode.urlToHttpUrl(imgUrl, __placeImgeUrlHttps);
+                if(imgUrl[0] == '/') {
                   imgUrl = api.host + imgUrl
                 }
-                imgUrl = wxDiscode.urlToHttpUrl(imgUrl, __placeImgeUrlHttps);
                 node.attr.src = imgUrl;
                 node.from = bindName;
                 results.images.push(node);
